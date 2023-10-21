@@ -1,0 +1,79 @@
+.header .trigger,
+.metaportal_fn_mobnav .social_trigger .trigger {
+  margin-right: 20px;
+}
+
+.trigger {
+  height: 50px;
+  background-color: var(--mc2);
+  z-index: 5;
+  position: relative;
+  display: block;
+  width: 50px;
+  border-radius: 100%;
+  color: #bbb;
+  cursor: pointer;
+}
+
+.trigger.active:after,
+.trigger:hover:after {
+  opacity: 0.5;
+}
+
+.trigger:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: var(--mc1);
+  opacity: 0.15;
+  border-radius: 100%;
+  box-shadow: 0 5px 20px;
+  transition: 0.3s;
+}
+
+.trigger.active span {
+  transform: rotate(45deg);
+}
+
+.trigger.active span:before {
+  bottom: 0;
+  transform: rotate(-90deg);
+}
+
+.trigger.active span:after {
+  width: 0;
+  transition: none;
+}
+
+.trigger span,
+.trigger span:after,
+.trigger span:before {
+  display: block;
+  height: 2px;
+  position: absolute;
+  background-color: var(--bg);
+  content: "";
+  transition: 0.3s;
+}
+
+.trigger span {
+  top: 24px;
+  width: 24px;
+  left: 13px;
+}
+
+.trigger span:before {
+  bottom: 6px;
+  width: 24px;
+  left: 0;
+}
+
+.trigger span:after {
+  top: 6px;
+  width: 16px;
+  left: 0;
+}
