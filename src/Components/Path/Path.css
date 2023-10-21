@@ -1,0 +1,37 @@
+.metaportal_fn_pagetitle {
+  padding: 239px 0 72px;
+  text-align: center;
+}
+
+.metaportal_fn_pagetitle p a {
+  color: var(--bc);
+  text-decoration: none;
+}
+
+.metaportal_fn_pagetitle p a:hover {
+  color: var(--mc1);
+}
+
+.metaportal_fn_pagetitle .divider {
+  margin: 0 10px;
+}
+
+.container.small {
+  max-width: 1400px;
+}
+
+@media (max-width: 1400px) {
+  .fn__maintitle.big {
+    font-size: 40px;
+  }
+}
+
+.fn__maintitle.big {
+  font-size: 40px;
+}
+
+.container:after {
+  display: table;
+  content: "";
+  clear: both;
+}
