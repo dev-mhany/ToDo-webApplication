@@ -1,79 +1,97 @@
-.header .trigger,
-.metaportal_fn_mobnav .social_trigger .trigger {
-  margin-right: 20px;
+.circle {
+  background: #1ba3f3;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex; /* or inline-flex */
+  align-items: center;
+  justify-content: center;
 }
 
-.trigger {
-  height: 50px;
-  background-color: var(--mc2);
-  z-index: 5;
+.User-area {
   position: relative;
-  display: block;
-  width: 50px;
-  border-radius: 100%;
-  color: #bbb;
   cursor: pointer;
 }
-
-.trigger.active:after,
-.trigger:hover:after {
-  opacity: 0.5;
-}
-
-.trigger:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
+.User-area > .User-avtar {
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
-  color: var(--mc1);
-  opacity: 0.15;
-  border-radius: 100%;
-  box-shadow: 0 5px 20px;
-  transition: 0.3s;
+  border-radius: 30px;
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 12px -5px #000;
+}
+.User-area > .User-avtar > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
 }
 
-.trigger.active span {
-  transform: rotate(45deg);
-}
-
-.trigger.active span:before {
-  bottom: 0;
-  transform: rotate(-90deg);
-}
-
-.trigger.active span:after {
-  width: 0;
-  transition: none;
-}
-
-.trigger span,
-.trigger span:after,
-.trigger span:before {
-  display: block;
-  height: 2px;
+.User-Dropdown {
+  display: none;
   position: absolute;
-  background-color: var(--bg);
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0px 0px 8px rgba(214, 214, 214, 0.78);
+  list-style: none;
+  padding: 0 20px;
+  width: 150px;
+  margin: 0;
+  top: 70px;
+  right: -9%;
+}
+.User-Dropdown:before {
   content: "";
-  transition: 0.3s;
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin-left: -0.5em;
+  right: 0px;
+  box-sizing: border-box;
+  border: 7px solid black;
+  border-color: transparent transparent #ffffff #ffffff;
+  transform-origin: 0 0;
+  transform: rotate(135deg);
+  box-shadow: -3px 3px 3px -3px rgba(214, 214, 214, 0.78);
 }
-
-.trigger span {
-  top: 24px;
-  width: 24px;
-  left: 13px;
+.User-Dropdown.U-open {
+  display: block;
 }
-
-.trigger span:before {
-  bottom: 6px;
-  width: 24px;
-  left: 0;
+.User-Dropdown > li {
+  padding: 0px;
+  line-height: 47px;
+  border-bottom: 1px solid rgba(215, 215, 215, 0.17);
 }
-
-.trigger span:after {
-  top: 6px;
-  width: 16px;
-  left: 0;
+.User-Dropdown > li:last-child {
+  border-bottom: 0px;
+}
+.User-Dropdown > li > a {
+  font-size: 13px;
+  padding: 15px 25px 16px 10px;
+  text-decoration: none;
+  color: #1787e0;
+  transition: all 0.2s ease-out;
+}
+.User-Dropdown span {
+  background: #16d67a;
+  padding: 3px 10px;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 13px;
+}
+.User-Dropdown > li:before {
+  content: "";
+  width: 0px;
+  height: 40px;
+  position: absolute;
+  background: #2196f3;
+  margin-top: 4px;
+  border-radius: 0 1px 1px 0;
+  left: 0px;
+  transition: all 0.2s ease;
+}
+.User-Dropdown > li:hover:before {
+  width: 5px;
+  border-radius: 30px;
+}
+.User-Dropdown > li a:hover {
+  margin-left: 5px;
 }

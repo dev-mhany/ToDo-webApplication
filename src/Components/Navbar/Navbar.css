@@ -11,10 +11,6 @@ a.full_link {
   z-index: 1;
 }
 
-.metaportal_fn_mobnav {
-  display: none;
-  overflow: hidden;
-}
 .mobile-nav li,
 .nav li {
   cursor: pointer !important;
@@ -250,17 +246,4 @@ a.full_link {
 }
 .mobile-nav .creative_link:before:hover {
   width: 10px;
-}
-
-@media (max-width: 1040px) {
-  .metaportal_fn_mobnav {
-    display: block;
-  }
-
-  #header {
-    display: none;
-  }
-}
-.show {
-  display: block;
 }
