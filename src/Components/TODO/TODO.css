@@ -1,0 +1,47 @@
+.TODO {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.todo-container {
+  background: #a7b9e3;
+  border-radius: 15px;
+  padding: 20px 10px;
+  color: white;
+  border: 3px solid rgb(36, 110, 194);
+  margin-top: 100px;
+}
+
+.task {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.task button {
+  background: rgb(12, 124, 251);
+  border-radius: 5px;
+  margin: 0px 5px;
+  padding: 3px 5px;
+  display: flex;
+  border: none;
+  cursor: pointer;
+  color: white;
+  float: right;
+}
+
+.header {
+  margin: 0.5em;
+  font-size: 1em;
+  text-align: center;
+  color: green;
+}
+
+.create-task input[type="text"] {
+  margin: 1em 2em;
+  width: 80%;
+  outline: none;
+  border: none;
+  padding: 0.7em;
+}

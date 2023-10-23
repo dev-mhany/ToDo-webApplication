@@ -5,7 +5,7 @@
   --bc: #9ba0b8;
   --hff: "Heebo", sans-serif;
   --bff: "Nunito", sans-serif;
-  --bg: #419771;
+  --bg: #d5857e;
 }
 
 body {
@@ -52,7 +52,7 @@ a {
   margin: 100px 0 0 100px;
   width: 330px;
   padding: 25px;
-  background: rgb(69 50 35 / 76%);
+  background: rgb(124 155 204 / 58%);
   border-radius: 2px;
   color: #fff;
   -webkit-box-shadow: 0px 0px 16px 9px rgba(0, 0, 0, 0.07);
@@ -202,7 +202,7 @@ a {
   box-shadow: 0px 0px 13px 8px rgba(0, 0, 0, 0.1);
 }
 .button--primary {
-  background: #966c54;
+  background: #d5857e;
   color: #fff;
 }
 .button:hover {
@@ -240,7 +240,7 @@ input[type="checkbox"] + label:after {
   right: 18px;
   width: 25px;
   height: 25px;
-  background: #966c54;
+  background: #d5857e;
   cursor: pointer;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
