@@ -63,7 +63,7 @@ export default function TODO() {
             <div className="tasks">
               {tasks
                 .filter(function (task) {
-                  return task.completed == false;
+                  return !task.completed;
                 })
                 .map((task, index) => (
                   <Task
@@ -80,7 +80,7 @@ export default function TODO() {
             <div className="tasks">
               {tasks
                 .filter(function (task) {
-                  return task.completed == true;
+                  return !!task.completed;
                 })
                 .map((task, index) => (
                   <Task

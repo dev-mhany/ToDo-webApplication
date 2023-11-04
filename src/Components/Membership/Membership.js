@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import Context from "../../Context";
 import { useState } from "react";
-import Login_Signup from "../Login_Signup/Login_Signup";
+import LoginSignup from "../Login_Signup/Login_Signup";
 import Loader from "../../Loader/Loader";
 
 export default function Membership() {
@@ -15,7 +15,7 @@ export default function Membership() {
       setIsLoading(false);
       console.log("loading");
     }, 3000);
-  }, []);
+  }, [setIsLoading]);
 
   const toggleAction = () => {
     var newAction = action === "login" ? "signup" : "login";
@@ -49,7 +49,7 @@ export default function Membership() {
                     <label htmlFor="form-toggler"></label>
                   </div>
                 </header>
-                <Login_Signup />
+                <LoginSignup />
               </section>
             </div>
           </div>{" "}

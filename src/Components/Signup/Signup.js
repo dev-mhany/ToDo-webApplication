@@ -5,13 +5,12 @@ import Context from "../../Context";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-  const { logged_in, setLoggedIn } = useContext(Context);
+  const { setLoggedIn } = useContext(Context);
   const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm();
 
   const [userInfo, setuserInfo] = useState({

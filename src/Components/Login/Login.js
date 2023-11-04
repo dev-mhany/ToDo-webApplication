@@ -1,16 +1,13 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Context from "../../Context";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const {
-    logged_in,
     setLoggedIn,
-    userData,
     setUserData,
-    isLoading,
     setIsLoading,
   } = useContext(Context);
 
@@ -20,7 +17,6 @@ export default function Login() {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm();
 
   const [userInfo, setuserInfo] = useState({

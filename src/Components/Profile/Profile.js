@@ -12,7 +12,7 @@ export default function Profile() {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-  }, []);
+  }, [setIsLoading]);
 
   return (
     <>

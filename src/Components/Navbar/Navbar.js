@@ -1,6 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import Context from "../../Context";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import CircleBtn from "../Circlebtn/Circlebtn";
 import "./Navbar.css";
 
@@ -14,8 +13,6 @@ export default function Navbar() {
       );
     }
   }, []);
-
-  const location = useLocation();
 
   return (
     <>
