@@ -1,13 +1,13 @@
-import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Context from "../../Context";
 import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'
+import { errorType } from '../errorType.tsx'
+import trackException from '../../utils/track-exception.ts'
 
 export default function Login() {
   const {
-    setLoggedIn,
-    setUserData,
     setIsLoading,
   } = useContext(Context);
 
@@ -15,47 +15,30 @@ export default function Login() {
 
   const {
     register,
-    formState: { errors },
+    formState: { errors,isSubmitting },
     handleSubmit,
+    setError
+
   } = useForm();
 
-  const [userInfo, setuserInfo] = useState({
-    email: "",
-    password: "",
-  });
+  useEffect(() => {
+    setIsLoading(isSubmitting);
+  }, [isSubmitting,setIsLoading]);
 
-  const onChangeValue = (e) => {
-    setuserInfo({
-      ...userInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const login = () => {
-    setIsLoading(true);
-
-    axios
-      .post(`http://localhost/apicrud/getuser.php`, {
-        email: userInfo.email,
-        password: userInfo.password,
-      })
-      .then((res) => {
-        setLoggedIn(res.data.status);
-        const user = res.data.user;
-        setUserData(user);
-        navigate(`/`);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoading(false);
-      });
-  };
+  const onSubmit = handleSubmit(async ({ email, password }) => {
+    try {
+      await signInWithEmailAndPassword(getAuth(), email, password)
+      navigate(`/`);
+    } catch (error) {
+      setError('email', { type: 'manual', message: errorType[error.code] || error.code })
+      trackException('signInWithEmailAndPassword', error, { email })
+    }
+  })
 
   return (
     <form
       className="form-group form-group--login"
-      onSubmit={handleSubmit(login)}
+      onSubmit={onSubmit}
     >
       <input
         className="form-group__input"
@@ -63,7 +46,7 @@ export default function Login() {
         id="email"
         name="email"
         placeholder="Email"
-        {...register("email", { required: true, onChange: onChangeValue })}
+        {...register("email", { required: true })}
       />
       {errors.email && <p className="error-msg">This field is required</p>}
       <input
@@ -75,8 +58,6 @@ export default function Login() {
         {...register("password", {
           required: true,
           minLength: 8,
-          pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/,
-          onChange: onChangeValue,
         })}
       />
       {errors.password && (

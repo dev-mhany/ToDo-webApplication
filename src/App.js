@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Context from "./Context";
 import { useState } from "react";
 import Profile from "./Components/Profile/Profile";
+import { AuthProvider } from './context/AuthContext.tsx';
+import "./firebaseConfig.ts";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,13 +29,15 @@ function App() {
         setIsLoading,
       }}
     >
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/Membership" element={<Membership />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/Membership" element={<Membership />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </Context.Provider>
   );
 }
