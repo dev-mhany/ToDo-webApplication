@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+import React from 'react'
 import { Auth, getAuth, onAuthStateChanged, sendEmailVerification, User } from 'firebase/auth'
 import {
   doc,
@@ -184,9 +185,5 @@ export function AuthProvider({ children }: Props) {
     setNotifications,
   }
 
-  return (
-    <>
-      <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-    </>
-  )
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
