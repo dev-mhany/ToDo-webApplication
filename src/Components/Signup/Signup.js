@@ -1,46 +1,27 @@
-import axios from "axios";
-import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import Context from "../../Context";
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
+import { errorType } from '../errorType.tsx'
 
 export default function Signup() {
-  const { setLoggedIn } = useContext(Context);
   const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
+    setError
   } = useForm();
 
-  const [userInfo, setuserInfo] = useState({
-    fullname: "",
-    email: "",
-    password: "",
-  });
 
-  const onChangeValue = (e) => {
-    setuserInfo({
-      ...userInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const signup = async () => {
+  const signup = async ({fullname,email,password}) => {
     try {
-      axios
-        .post(`http://localhost/apicrud/addusers.php`, {
-          fullname: userInfo.fullname,
-          email: userInfo.email,
-          password: userInfo.password,
-        })
-        .then((res) => {
-          setLoggedIn(res.data.status);
-          navigate(`/`);
-          return;
-        });
+      const result = await createUserWithEmailAndPassword(getAuth(), email, password)
+      const user = result.user
+      if (!user) return
+      updateProfile(user, { displayName: fullname, photoURL: user.photoURL })
+      navigate(`/`);
     } catch (error) {
-      throw error;
+      setError('email', { type: 'manual', message: errorType[error.code] || error.code })
     }
   };
 
@@ -57,8 +38,7 @@ export default function Signup() {
         placeholder="Full Name"
         {...register("fullname", {
           required: true,
-          pattern: /^[A-Za-z]+$/,
-          onChange: onChangeValue,
+          pattern: /^[A-Z a-z]+$/,
         })}
       />
       {errors.fullname && (
@@ -74,7 +54,7 @@ export default function Signup() {
         id="email"
         name="email"
         placeholder="Email"
-        {...register("email", { required: true, onChange: onChangeValue })}
+        {...register("email", { required: true })}
       />
       {errors.email && <p className="error-msg">This field is required</p>}
       <input
@@ -87,7 +67,6 @@ export default function Signup() {
           required: true,
           minLength: 8,
           pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/,
-          onChange: onChangeValue,
         })}
       />
       {errors.password && (
