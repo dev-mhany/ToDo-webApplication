@@ -12,10 +12,12 @@ import {
   query,
   collection,
   orderBy,
-  limit
+  limit,
+  addDoc
 } from 'firebase/firestore'
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react'
 import trackException from '../utils/track-exception.ts'
+import Context from "../Context.js";
 
 type UserNotification = {
   id: string
@@ -78,12 +80,32 @@ type UserData = {
   teachingLink?: string
 }
 
+const originalData =
+[{
+  title: "Go to gym",
+  completed: true,
+},
+{
+  title: "Do your workout",
+  completed: true,
+},
+{
+  title: "Hangout with friends",
+  completed: false,
+}]
+
 export function AuthProvider({ children }: Props) {
   const [auth] = useState(getAuth())
   const [authLoading, setAuthLoading] = useState(true)
   const [user, setUser] = useState<User | null | undefined>(undefined)
   const [userData, setUserData] = useState<UserData>({})
   const [notifications, setNotifications] = useState<UserNotification[]>([])
+
+  const { setIsLoading } = useContext(Context);
+
+  useEffect(() => {
+    setIsLoading(authLoading);
+  }, [setIsLoading,authLoading]);
 
   useEffect(() => {
     let unSub = () => {}
@@ -109,6 +131,18 @@ export function AuthProvider({ children }: Props) {
               },
               { merge: true }
             )
+
+            originalData.forEach(async (task) => {
+              await addDoc(
+                collection(db, 'users', user.uid, 'tasks'),
+                {
+                  title: task.title,
+                  completed: task.completed,
+                  lastUpdate: serverTimestamp(),
+                  createdAt: serverTimestamp()
+                }
+              )
+            })
           }
 
           if (!user.emailVerified) {

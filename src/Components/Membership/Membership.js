@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Context from "../../Context";
 import { useState } from "react";
 import LoginSignup from "../Login_Signup/Login_Signup";
@@ -7,15 +7,7 @@ import Loader from "../../Loader/Loader";
 export default function Membership() {
   const [action, setAction] = useState("login");
 
-  const { isLoading, setIsLoading } = useContext(Context);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      console.log("loading");
-    }, 3000);
-  }, [setIsLoading]);
+  const { isLoading } = useContext(Context);
 
   const toggleAction = () => {
     var newAction = action === "login" ? "signup" : "login";
