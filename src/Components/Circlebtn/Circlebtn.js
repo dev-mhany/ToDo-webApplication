@@ -2,10 +2,11 @@ import { useState, useEffect, useContext } from "react";
 import "./Circlebtn.css";
 import { Link } from "react-router-dom";
 import Context from "../../Context";
+import { getAuth } from "firebase/auth";
 
 export default function CircleBtn() {
   const [active, setActive] = useState(false);
-  const { logged_in, setLoggedIn, userData, setUserData } = useContext(Context);
+  const { userData } = useContext(Context);
 
   useEffect(() => {
     console.log(userData); // This will log the updated userData
@@ -15,9 +16,9 @@ export default function CircleBtn() {
     setActive(!active);
   };
 
-  const logout = () => {
-    setLoggedIn(!logged_in);
-    setUserData({ user_id: "", name: "", email: "" });
+  const logout = async () => {
+    // TODO : stop listening to notifications
+    getAuth().signOut()
   };
 
   return (
