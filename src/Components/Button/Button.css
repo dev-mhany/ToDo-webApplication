@@ -1,0 +1,80 @@
+button {
+  background: transparent;
+  border: none;
+}
+.metaportal_fn_button:hover:after {
+  animation-duration: 2s;
+}
+
+.metaportal_fn_button:hover {
+  color: #fff;
+}
+
+.metaportal_fn_button {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-family: var(--hff);
+  font-weight: bolder;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 34px;
+  position: relative;
+  color: var(--hc);
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  background-color: transparent;
+  outline: transparent 0;
+}
+.metaportal_fn_button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background: -moz-linear-gradient(
+      45deg,
+      var(--mc1),
+      var(--mc2),
+      var(--mc1),
+      var(--mc2)
+    )
+    border-box;
+  background: -webkit-linear-gradient(
+      45deg,
+      var(--mc1),
+      var(--mc2),
+      var(--mc1),
+      var(--mc2)
+    )
+    border-box;
+  background: linear-gradient(
+      45deg,
+      var(--mc1),
+      var(--mc2),
+      var(--mc1),
+      var(--mc2)
+    )
+    border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  -webkit-mask-composite: source-out;
+  mask-composite: exclude;
+  background-size: 300% 300%;
+  -webkit-animation: 4s infinite alternate animatedgradient;
+  animation: 4s infinite alternate animatedgradient;
+}
+
+.metaportal_fn_button.full {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+}
