@@ -18,7 +18,7 @@ export default function CircleBtn() {
 
   const logout = async () => {
     // TODO : stop listening to notifications
-    getAuth().signOut()
+    getAuth().signOut();
   };
 
   return (

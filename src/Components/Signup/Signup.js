@@ -1,7 +1,11 @@
 import { useForm } from "react-hook-form";
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { errorType } from '../errorType.tsx'
+import { errorType } from "../errorType.tsx";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -9,19 +13,25 @@ export default function Signup() {
     register,
     formState: { errors },
     handleSubmit,
-    setError
+    setError,
   } = useForm();
 
-
-  const signup = async ({fullname,email,password}) => {
+  const signup = async ({ fullname, email, password }) => {
     try {
-      const result = await createUserWithEmailAndPassword(getAuth(), email, password)
-      const user = result.user
-      if (!user) return
-      updateProfile(user, { displayName: fullname, photoURL: user.photoURL })
+      const result = await createUserWithEmailAndPassword(
+        getAuth(),
+        email,
+        password
+      );
+      const user = result.user;
+      if (!user) return;
+      updateProfile(user, { displayName: fullname, photoURL: user.photoURL });
       navigate(`/`);
     } catch (error) {
-      setError('email', { type: 'manual', message: errorType[error.code] || error.code })
+      setError("email", {
+        type: "manual",
+        message: errorType[error.code] || error.code,
+      });
     }
   };
 

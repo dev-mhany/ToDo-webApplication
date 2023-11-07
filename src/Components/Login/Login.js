@@ -2,44 +2,41 @@ import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Context from "../../Context";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword, getAuth } from 'firebase/auth'
-import { errorType } from '../errorType.tsx'
-import trackException from '../../utils/track-exception.ts'
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { errorType } from "../errorType.tsx";
+import trackException from "../../utils/track-exception.ts";
 
 export default function Login() {
-  const {
-    setIsLoading,
-  } = useContext(Context);
+  const { setIsLoading } = useContext(Context);
 
   const navigate = useNavigate();
 
   const {
     register,
-    formState: { errors,isSubmitting },
+    formState: { errors, isSubmitting },
     handleSubmit,
-    setError
-
+    setError,
   } = useForm();
 
   useEffect(() => {
     setIsLoading(isSubmitting);
-  }, [isSubmitting,setIsLoading]);
+  }, [isSubmitting, setIsLoading]);
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     try {
-      await signInWithEmailAndPassword(getAuth(), email, password)
+      await signInWithEmailAndPassword(getAuth(), email, password);
       navigate(`/`);
     } catch (error) {
-      setError('email', { type: 'manual', message: errorType[error.code] || error.code })
-      trackException('signInWithEmailAndPassword', error, { email })
+      setError("email", {
+        type: "manual",
+        message: errorType[error.code] || error.code,
+      });
+      trackException("signInWithEmailAndPassword", error, { email });
     }
-  })
+  });
 
   return (
-    <form
-      className="form-group form-group--login"
-      onSubmit={onSubmit}
-    >
+    <form className="form-group form-group--login" onSubmit={onSubmit}>
       <input
         className="form-group__input"
         type="email"
