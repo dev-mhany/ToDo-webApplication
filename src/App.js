@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Context from "./Context";
 import { useState } from "react";
 import Profile from "./Components/Profile/Profile";
-import { AuthProvider } from './context/AuthContext.tsx';
+import { AuthProvider } from "./context/AuthContext.tsx";
 import "./firebaseConfig.ts";
 
 function App() {

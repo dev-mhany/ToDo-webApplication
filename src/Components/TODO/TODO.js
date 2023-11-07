@@ -3,46 +3,63 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import CreateTask from "../CreateTask/CreateTask";
 import "./TODO.css";
-import { collection, addDoc, getFirestore, updateDoc, doc, deleteDoc, serverTimestamp, onSnapshot } from 'firebase/firestore'
-import { useAuth } from '../../context/AuthContext.tsx'
+import {
+  collection,
+  addDoc,
+  getFirestore,
+  updateDoc,
+  doc,
+  deleteDoc,
+  serverTimestamp,
+  onSnapshot,
+} from "firebase/firestore";
+import { useAuth } from "../../context/AuthContext.tsx";
 import Task from "./../Task/Task";
 
 export default function TODO() {
-  const {user} = useAuth()
+  const { user } = useAuth();
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    if (!user) return
+    if (!user) return;
     const db = getFirestore();
-    const unsubscribe = onSnapshot(collection(db, 'users',user.uid,"tasks"), (snapshot) => {
-      const newTasks = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setTasks(newTasks);
-    });
+    const unsubscribe = onSnapshot(
+      collection(db, "users", user.uid, "tasks"),
+      (snapshot) => {
+        const newTasks = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTasks(newTasks);
+      }
+    );
     return () => unsubscribe();
   }, [user]);
 
   const addTask = async (title) => {
-    if (!user) return
+    if (!user) return;
     const db = getFirestore();
-    await addDoc(collection(db, 'users',user.uid,"tasks"), { title, completed: false,
+    await addDoc(collection(db, "users", user.uid, "tasks"), {
+      title,
+      completed: false,
       lastUpdate: serverTimestamp(),
-      createdAt: serverTimestamp() })
+      createdAt: serverTimestamp(),
+    });
   };
 
   const completeTask = async (task) => {
-    if (!user) return
+    if (!user) return;
     const db = getFirestore();
-    await updateDoc(doc(db,'users',user.uid,"tasks",task.id), { completed: !task.completed,
-      lastUpdate: serverTimestamp(), })
+    await updateDoc(doc(db, "users", user.uid, "tasks", task.id), {
+      completed: !task.completed,
+      lastUpdate: serverTimestamp(),
+    });
   };
 
   const removeTask = async (task) => {
-    if (!user) return
+    if (!user) return;
     const db = getFirestore();
-    await deleteDoc(doc(db,'users',user.uid,"tasks",task.id))
+    await deleteDoc(doc(db, "users", user.uid, "tasks", task.id));
   };
 
   return (

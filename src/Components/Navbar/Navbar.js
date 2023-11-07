@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CircleBtn from "../Circlebtn/Circlebtn";
 import "./Navbar.css";
+import logo from "./Logo.png";
 
 export default function Navbar() {
   const [effect, seteffect] = useState(false);
@@ -22,7 +23,7 @@ export default function Navbar() {
             <div className="trigger_logo">
               <div className="logo">
                 <Link to="/">
-                  <img src="{logo}" alt="Logo" />
+                  <img src={logo} alt="Logo" className="logo_img" />
                 </Link>
               </div>
             </div>

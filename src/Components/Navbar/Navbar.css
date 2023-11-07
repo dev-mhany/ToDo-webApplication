@@ -1,5 +1,6 @@
 .header.active:after {
   transform: translateY(0);
+  background-color: rgba(253, 253, 253, 0.08);
 }
 
 a.full_link {
@@ -16,6 +17,11 @@ a.full_link {
   cursor: pointer !important;
 }
 
+.logo_img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
 .header .trigger_logo,
 .metaportal_fn_mobnav .social,
 .metaportal_fn_mobnav .social_trigger {
@@ -190,16 +196,17 @@ a.full_link {
   position: absolute;
   right: 0;
   bottom: 0;
+  border: 10px solid transparent;
   z-index: -1;
-  background: #1b121d;
-  background: -moz-linear-gradient(90deg, #1b121d 0, #120f2f 50%, #1b121d 100%);
+  background: #ffffff00;
+  /* background: -moz-linear-gradient(90deg, #1b121d 0, #120f2f 50%, #1b121d 100%);
   background: -webkit-linear-gradient(
     90deg,
     #1b121d 0,
     #120f2f 50%,
     #1b121d 100%
   );
-  background: linear-gradient(90deg, #1b121d 0, #120f2f 50%, #1b121d 100%);
+  background: linear-gradient(90deg, #1b121d 0, #120f2f 50%, #1b121d 100%); */
 }
 
 .header.active:after {
@@ -209,8 +216,9 @@ a.full_link {
 .header.active {
   z-index: 60;
   /* padding: 20px 30px; */
-  padding-bottom: 20px;
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  padding-bottom: 1px;
+  border-bottom-color: rgba(240, 224, 224, 0.08);
+  background-color: #ffffff00;
 }
 .mobile-envato {
   position: fixed;
@@ -226,6 +234,9 @@ a.full_link {
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: #d5857e50;
+  border-radius: 10px;
 }
 
 .header .nav ul {
